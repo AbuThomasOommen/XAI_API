@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Machine Learning Model Selector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles1.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Machine Learning Model Selector</h1>
+    <select id="modelSelect">
+      <option value="Choose a model first">......Select the Model.......</option>
+      <option value="Deep Learning CNN Model will Detect the Image as Fake or Real based on the areas/pixels highlighted in red or green. The positive_color (red) is used to represent features that contribute positively to the model's prediction of a real or fake image, while the negative_color (green) is used to represent features that contribute negatively to the prediction of a real or fake image." data-id="100">CNN Model (Deep Learning CNN Model for Images to Detect Fakes)</option>
+      <option value="NLP Model using LSTM to explain the classification of Text as positive or neutral or negative based on the contribution of specific words. Words with positive contributions to the predicted class are shown in green, while words with negative contributions are shown in red." data-id="200" >NLP Model (LSTM NLP Model to explain the Classification of Text)</option>
+    </select>
+  </header>
+  <div class="main-container">
+
+    <section class="input-section">
+      <h2>Choose the Input for the selected Model</h2>
+      <div id="imageContainer" class="image-container">
+        <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+          <input type="file" id="imageInput" accept=".tif,.jpg,.jpeg,image/*">
+          <label for="imageInput" class="custom-file-upload">Choose Image Input</label>
+        </form>
+        <img id="selectedImage" src="#" alt="Browse and select an Image">
+      </div>
+    
+      <div id="tweetContainer" class="tweet-container" style="display: none;">
+        <textarea id="tweetInput" placeholder="Type or paste your tweet here..."rows="17" cols="80"></textarea>
+      </div>
+    </section>
+    
+    <section class="output-section">
+      <h2>Results of the Model with Explainations</h2>
+      <div id="output_desc"></div>
+      <div id="loading" class="loading" style="display: none;">
+        <p>Please Wait. Loading the explainations......</p>
+      </div>
+      <div class="output-content">
+        <img id="output_img" src="#">
+        <div id="output_msg"> </div>
+    </section>
+
+  </div>
+  <button id="runModelBtn" onclick="runModel()">Run the Model</button>
+
+  <script src="{{ url_for('static', filename='script2.js') }}"></script>
+</body>
+</html>
